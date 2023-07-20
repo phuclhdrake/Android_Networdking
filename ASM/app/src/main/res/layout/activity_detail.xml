@@ -61,7 +61,7 @@
         android:textSize="20dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="Giá"
+        android:text="Giá 1222"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="42dp"/>
