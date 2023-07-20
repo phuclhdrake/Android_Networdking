@@ -94,9 +94,9 @@
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="327dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/green_cyan"
             android:text="Sign Up" />
     </LinearLayout>
 

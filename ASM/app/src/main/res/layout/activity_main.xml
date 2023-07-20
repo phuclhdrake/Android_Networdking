@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/bg_tab"
+        android:backgroundTint="@color/bg_tab"
         app:itemIconTint="@color/color_bottom_click"
         app:itemTextColor="@color/color_bottom_click"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,8 +1,11 @@
 package com.example.asm.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -17,6 +20,9 @@ import android.view.ViewGroup;
 import com.example.asm.R;
 import com.example.asm.SlideAdapter;
 import com.example.asm.SlideItem;
+import com.example.asm.activity.DetailActivity;
+import com.example.asm.activity.LoginActivity;
+import com.example.asm.activity.SignUpActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +34,8 @@ import java.util.List;
  */
 public class FragmentHome extends Fragment {
     ViewPager2 viewPager2;
+
+    CardView cvProduct;
 
     private Handler slideHandler = new Handler();
     public FragmentHome() {
@@ -44,11 +52,14 @@ public class FragmentHome extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        cvProduct = view.findViewById(R.id.cv_product);
+
         viewPager2 = view.findViewById(R.id.viewPagerSlide);
         List<SlideItem> slideItem = new ArrayList<>();
         slideItem.add(new SlideItem(R.drawable.img01));
@@ -82,6 +93,13 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        cvProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
