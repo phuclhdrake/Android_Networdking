@@ -10,92 +10,125 @@
         android:id="@+id/demo51Txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="id"
         android:inputType="text"
-        android:text="id"
+        app:layout_constraintBottom_toTopOf="@+id/demo51Txt2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/demo51Txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="Name"
         android:inputType="text"
-        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/demo51Txt3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/demo51Txt1" />
+        app:layout_constraintTop_toBottomOf="@+id/demo51Txt1"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/demo51Txt3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
         android:ems="10"
+        android:hint="price"
         android:inputType="text"
-        android:text="price"
+        app:layout_constraintBottom_toTopOf="@+id/demo51Txt4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/demo51Txt2" />
+        app:layout_constraintTop_toBottomOf="@+id/demo51Txt2"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/demo51Txt4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="ces"
         android:inputType="text"
-        android:text="ces"
+        app:layout_constraintBottom_toTopOf="@+id/demo51Btn2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/demo51Txt3" />
+        app:layout_constraintTop_toBottomOf="@+id/demo51Txt3"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/demo51Btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"
+        app:layout_constraintBottom_toTopOf="@+id/demo51TvKQ"
+        app:layout_constraintEnd_toStartOf="@+id/demo51Btn3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/demo51Btn1"
+        app:layout_constraintTop_toBottomOf="@+id/demo51Txt4"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/demo51Btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="select"
-        app:layout_constraintBaseline_toBaselineOf="@+id/demo51Btn2"
+        app:layout_constraintBottom_toTopOf="@+id/demo51TvKQ"
         app:layout_constraintEnd_toStartOf="@+id/demo51Btn2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/demo51Btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:text="update"
-        app:layout_constraintEnd_toStartOf="@+id/demo51Btn3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/demo51Btn1"
-        app:layout_constraintTop_toBottomOf="@+id/demo51Txt4" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demo51Txt4"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/demo51Btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="delete"
-        app:layout_constraintBaseline_toBaselineOf="@+id/demo51Btn2"
+        app:layout_constraintBottom_toTopOf="@+id/demo51TvKQ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/demo51Btn2" />
+        app:layout_constraintStart_toEndOf="@+id/demo51Btn2"
+        app:layout_constraintTop_toBottomOf="@+id/demo51Txt4"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/demo51TvKQ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demo51Btn2"
+        app:layout_constraintVertical_bias="0.084" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="31dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/demo51Btn1" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

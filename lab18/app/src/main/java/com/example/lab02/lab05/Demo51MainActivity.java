@@ -60,7 +60,7 @@ public class Demo51MainActivity extends AppCompatActivity {
         p.setPid(txt1.getText().toString());
         //b1. Tao doi tuong Retrofit
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://batdongsanabc.000webhostapp.com/mob403lab5/")
+                .baseUrl("https://phucle1123.000webhostapp.com/lab05/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //b2. Goi interface + chuan bi ham + thuc thi ham
@@ -92,7 +92,7 @@ public class Demo51MainActivity extends AppCompatActivity {
         p.setDescription(txt4.getText().toString());
         //b1. Tao doi tuong Retrofit
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://batdongsanabc.000webhostapp.com/mob403lab5/")
+                .baseUrl("https://phucle1123.000webhostapp.com/lab05/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //b2. Goi interface + chuan bi ham + thuc thi ham
@@ -120,7 +120,7 @@ public class Demo51MainActivity extends AppCompatActivity {
         //B0. Chuan bi du lieu
         //b1. Tao doi tuong Retrofit
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://batdongsanabc.000webhostapp.com/mob403lab4/")
+                .baseUrl("https://phucle1123.000webhostapp.com/lab04/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //b2. Goi interface + chuan bi ham + thuc thi ham
