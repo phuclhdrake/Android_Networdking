@@ -16,10 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".lab06.Demo61MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".lab05.Demo51MainActivity"
             android:exported="false" />
         <activity
-            android:name=".lab06.Demo61MainActivity"
+            android:name=".lab07.Demo71MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
