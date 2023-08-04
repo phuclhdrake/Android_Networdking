@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.asm.MainActivity;
 import com.example.asm.R;
 
 public class LoginActivity extends AppCompatActivity {

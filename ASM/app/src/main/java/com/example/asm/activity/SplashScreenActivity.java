@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.asm.MainActivity;
 import com.example.asm.R;
 
 public class SplashScreenActivity extends AppCompatActivity {

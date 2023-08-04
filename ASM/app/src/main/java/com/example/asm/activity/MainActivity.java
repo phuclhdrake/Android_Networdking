@@ -1,4 +1,4 @@
-package com.example.asm;
+package com.example.asm.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.asm.R;
 import com.example.asm.fragment.FragmentCart;
 import com.example.asm.fragment.FragmentHome;
 import com.example.asm.fragment.FragmentPerson;
