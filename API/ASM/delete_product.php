@@ -22,11 +22,11 @@ if ($conn->connect_error) {
 
 
 // check for required fields
-if (isset($_POST['pid'])) {
-    $pid = $_POST['pid'];
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
 
     // sql to delete a record
-    $sql = "DELETE FROM products WHERE pid = $pid";
+    $sql = "DELETE FROM Sanpham WHERE id = $id";
 
     if ($conn->query($sql) === TRUE) {
         // successfully updated

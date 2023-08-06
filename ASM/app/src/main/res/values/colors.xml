@@ -8,13 +8,14 @@
     <color name="icon_02">#1DB954</color>
     <color name="red_gia">#E50914</color>
     <color name="xamnhat">#F4F5F7</color>
+    <color name="red2">#E91E63</color>
 
     <color name="xam">#AAA5A5</color>
     <color name="yelo">#00B0FF</color>
     <color name="yelow_backgroud">#00B0FF</color>
     <color name="blue2">#65EFFF</color>
     <color name="yellow2">#00B0FF</color>
-    <color name="red2">#FF6565</color>
+
     <color name="green2">#65FF74</color>
     <color name="purple2">#9865FF</color>
     <color name="pink2">#FA65FF</color>

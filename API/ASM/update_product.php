@@ -16,15 +16,17 @@ if ($conn->connect_error) {
 }
 
 // check for required fields
-if (isset($_POST['pid']) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description'])) {
+if (isset($_POST['id']) && isset($_POST['tensanpham']) && isset($_POST['giasanpham']) && isset($_POST['hinhanhsanpham'])  && isset($_POST['motasanpham']) && isset($_POST['idsanpham'])  ) {
 
-    $pid = $_POST['pid'];
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
+    $id = $_POST['id'];
+    $tensanpham = $_POST['tensanpham'];
+    $giasanpham = $_POST['giasanpham'];
+    $hinhanhsanpham = $_POST['hinhanhsanpham'];
+    $motasanpham = $_POST['motasanpham'];
+    $idsanpham = $_POST['idsanpham'];
 
     
-    $sql = "UPDATE products SET name = '$name', price = '$price', description = '$description' WHERE pid = $pid";
+    $sql = "UPDATE Sanpham SET tensanpham = '$tensanpham', giasanpham = '$giasanpham', hinhanhsanpham = '$hinhanhsanpham', motasanpham = '$motasanpham', idsanpham = '$idsanpham' WHERE id = $id";
 
     if ($conn->query($sql) === TRUE) {
       //echo "Record updated successfully";

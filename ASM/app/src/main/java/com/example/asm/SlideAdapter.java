@@ -1,15 +1,16 @@
 package com.example.asm;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -60,6 +61,10 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
 
 
             imageView.setImageResource(slideItem.getImage());
+//            Picasso.with(context).load(slideItem.getImage())
+//                    .placeholder(R.drawable.imgload)
+//                    .error(R.drawable.imgerror)
+//                    .into(imageView);
         }
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -17,25 +18,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.asm.R;
 import com.example.asm.SlideAdapter;
 import com.example.asm.SlideItem;
 import com.example.asm.activity.DetailActivity;
 import com.example.asm.activity.LoginActivity;
 import com.example.asm.activity.SignUpActivity;
+import com.example.asm.adapter.HomeSanphamAdapter;
+import com.example.asm.adapter.SanphamAdapter;
+import com.example.asm.model.Sanpham;
+import com.example.asm.myInterface.IClickItemHomeProduct;
+import com.example.asm.ultil.CheckConnect;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentHome#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentHome extends Fragment {
     ViewPager2 viewPager2;
-
-    CardView cvProduct;
+    RecyclerView rcv_home;
+    int id = 0;
+    String tensanpham = "";
+    int giasanpham = 0;
+    String hinhanhsanpham = "";
+    String motasanpham = "";
+    int idsanpham = 0;
+    ArrayList<Sanpham> mangSanpham;
+    HomeSanphamAdapter sanphamAdapter;
 
     private Handler slideHandler = new Handler();
     public FragmentHome() {
@@ -58,7 +75,7 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        cvProduct = view.findViewById(R.id.cv_product);
+//        cvProduct = view.findViewById(R.id.cv_product);
 
         viewPager2 = view.findViewById(R.id.viewPagerSlide);
         List<SlideItem> slideItem = new ArrayList<>();
@@ -66,6 +83,11 @@ public class FragmentHome extends Fragment {
         slideItem.add(new SlideItem(R.drawable.img02));
         slideItem.add(new SlideItem(R.drawable.img03));
         slideItem.add(new SlideItem(R.drawable.img04));
+        slideItem.add(new SlideItem(R.drawable.img05));
+        slideItem.add(new SlideItem(R.drawable.img06));
+        slideItem.add(new SlideItem(R.drawable.img07));
+        slideItem.add(new SlideItem(R.drawable.img08));
+//        slideItem.add(new SlideItem(hinhanhsanpham));
 
         viewPager2.setAdapter(new SlideAdapter(slideItem, viewPager2));
         viewPager2.setClipToPadding(false);
@@ -93,15 +115,76 @@ public class FragmentHome extends Fragment {
             }
         });
 
-        cvProduct.setOnClickListener(new View.OnClickListener() {
+        rcv_home = view.findViewById(R.id.rcv_Home);
+        mangSanpham = new ArrayList<>();
+        sanphamAdapter = new HomeSanphamAdapter(mangSanpham, getContext(), new IClickItemHomeProduct() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                startActivity(intent);
+            public void onClickItemHomeProduct(Sanpham sanpham) {
+                onClickGoDetail(sanpham);
             }
         });
 
+        rcv_home.setHasFixedSize(true);
+        rcv_home.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rcv_home.setAdapter(sanphamAdapter);
+
+        if (CheckConnect.haveNetworkConnection(getContext())){
+            // co ket noi internet
+            CheckConnect.ShowToast_Short(getContext(), "Co mang");
+            getDuLieuSP();
+        }else {
+            CheckConnect.ShowToast_Short(getContext(), "Khong co ket noi internet !");
+            getActivity().finish();
+        }
+
         return view;
+    }
+    private void onClickGoDetail(Sanpham sanpham) {
+        Intent intent = new Intent(getContext(), DetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("obj_Sanpham", sanpham);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    private void getDuLieuSP() {
+        //b1. chuan bi du lieu
+        //b2. Tao queue
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        //b3. url
+        String url = "https://phucle1123.000webhostapp.com/asm/get_all_sanpham.php";
+        //b4. Xac dinh loai request
+        JsonObjectRequest request = new JsonObjectRequest(url, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray products = response.getJSONArray("Sanpham");
+
+                    for (int i = 0; i < products.length(); i++) {
+                        JSONObject product = products.getJSONObject(i);
+                        id = product.getInt("id");
+                        tensanpham = product.getString("tensanpham");
+                        giasanpham = product.getInt("giasanpham");
+                        hinhanhsanpham = product.getString("hinhanhsanpham");
+                        motasanpham = product.getString("motasanpham");
+                        idsanpham = product.getInt("idsanpham");
+                        mangSanpham.add(new Sanpham(id, tensanpham, giasanpham, hinhanhsanpham, motasanpham, idsanpham));
+                        sanphamAdapter.notifyDataSetChanged();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                CheckConnect.ShowToast_Short(getContext(), "loi ne");
+            }
+        });
+        //b5. truyen tham so (neu co)
+        //b6. thuc thi
+        queue.add(request);
     }
 
 

@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 
 public class AdminActivity extends AppCompatActivity {
     RecyclerView rcv_admin_product;
+    ImageView imgGoAddProduct;
     int id = 0;
     String tensanpham = "";
     int giasanpham = 0;
@@ -51,6 +55,14 @@ public class AdminActivity extends AppCompatActivity {
             CheckConnect.ShowToast_Short(getApplicationContext(), "Khong co ket noi internet !");
             finish();
         }
+        // chuyen sang man hinh them sp
+        imgGoAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, AddProductActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getDuLieuSP() {
@@ -103,6 +115,8 @@ public class AdminActivity extends AppCompatActivity {
 //        LinearLayoutManager layoutManager= new LinearLayoutManager(getApplicationContext());
 //        rcv_admin_product.setLayoutManager(layoutManager);
         rcv_admin_product.setAdapter(sanphamAdapter);
+
+        imgGoAddProduct = findViewById(R.id.img_go_add_product);
     }
 
 }
