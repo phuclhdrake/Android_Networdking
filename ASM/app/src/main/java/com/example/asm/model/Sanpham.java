@@ -2,7 +2,7 @@ package com.example.asm.model;
 
 import java.io.Serializable;
 
-public class Sanpham implements Serializable {
+public class Sanpham {
     public int Id;
     public String TenSP;
     public int GiaSP;

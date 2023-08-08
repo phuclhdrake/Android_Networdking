@@ -64,14 +64,16 @@ public class AddProductActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        CheckConnect.ShowToast_Short(getApplicationContext(), response.toString());
-//                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-//                        startActivity(intent);
+                        CheckConnect.ShowToast_Short(getApplicationContext(), "Thêm thành công");
+                        edtTensp.setText("");
+                        edtGiasp.setText("");
+                        edtHinhanhsp.setText("");
+                        edtMotasp.setText("");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                CheckConnect.ShowToast_Short(getApplicationContext(), error.getMessage());
+                CheckConnect.ShowToast_Short(getApplicationContext(),"Lỗi: "+ error.getMessage());
             }
         }) {
             @Override

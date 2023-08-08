@@ -117,34 +117,13 @@ public class FragmentHome extends Fragment {
 
         rcv_home = view.findViewById(R.id.rcv_Home);
         mangSanpham = new ArrayList<>();
-        sanphamAdapter = new HomeSanphamAdapter(mangSanpham, getContext(), new IClickItemHomeProduct() {
-            @Override
-            public void onClickItemHomeProduct(Sanpham sanpham) {
-                onClickGoDetail(sanpham);
-            }
-        });
+        sanphamAdapter = new HomeSanphamAdapter(mangSanpham, getContext() );
 
         rcv_home.setHasFixedSize(true);
         rcv_home.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rcv_home.setAdapter(sanphamAdapter);
 
-        if (CheckConnect.haveNetworkConnection(getContext())){
-            // co ket noi internet
-            CheckConnect.ShowToast_Short(getContext(), "Co mang");
-            getDuLieuSP();
-        }else {
-            CheckConnect.ShowToast_Short(getContext(), "Khong co ket noi internet !");
-            getActivity().finish();
-        }
-
         return view;
-    }
-    private void onClickGoDetail(Sanpham sanpham) {
-        Intent intent = new Intent(getContext(), DetailActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("obj_Sanpham", sanpham);
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 
     private void getDuLieuSP() {
@@ -159,6 +138,7 @@ public class FragmentHome extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray products = response.getJSONArray("Sanpham");
+                    mangSanpham.clear();
 
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject product = products.getJSONObject(i);
@@ -205,5 +185,12 @@ public class FragmentHome extends Fragment {
     public void onResume() {
         super.onResume();
         slideHandler.postDelayed(slideRunnable, 2000);
+        if (CheckConnect.haveNetworkConnection(getContext())) {
+            CheckConnect.ShowToast_Short(getContext(), "Loading...");
+            getDuLieuSP();
+        } else {
+            CheckConnect.ShowToast_Short(getContext(), "Không có kết nối internet !");
+            getActivity().finish();
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,46 +24,38 @@ import java.util.Map;
 public class UpdateProductActivity extends AppCompatActivity {
     EditText edtUpdateProductTensp, edtUpdateProductGiasp, edtUpdateProductHinhanhsp, edtUpdateProductMotasp;
     Button btnUpdateProduct;
-    private int id = 0;
-    private String tensanpham = "";
-    private int giasanpham = 0;
-    private String hinhanhsanpham = "";
-    private String motasanpham = "";
-    private int idsanpham = 0;
-
+    String id, name, price, desc, image, idsp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_product);
+        // anh xa --------------
+        Anhxa();
 
         // Get the intent that started this activity
         Intent intent = getIntent();
 
-        // anh xa --------------
-        Anhxa();
+        Bundle extras = intent.getExtras();
+        id = extras.getString("id");
+        name = extras.getString("tensanpham");
+        price = extras.getString("giasanpham");
+        desc = extras.getString("motasanpham");
+        image = extras.getString("hinhanhsanpham");
+        idsp = extras.getString("idsanpham");
+        Log.d("aaaaaaaa", "id "+id);
 
-        // Check if the intent has the extras you passed from the previous activity
-        if (intent != null) {
-            // Retrieve the data using the keys you used in putExtra
-            id = intent.getIntExtra("id", -1);
-            tensanpham = intent.getStringExtra("tensanpham");
-            giasanpham = intent.getIntExtra("giasanpham", -1);
-            hinhanhsanpham = intent.getStringExtra("hinhanhsanpham");
-            motasanpham = intent.getStringExtra("motasanpham");
-            idsanpham = intent.getIntExtra("idsanpham", -1);
+        edtUpdateProductTensp.setText(name);
+        edtUpdateProductGiasp.setText(String.valueOf(price));
+        edtUpdateProductHinhanhsp.setText(image);
+        edtUpdateProductMotasp.setText(desc);
 
-            edtUpdateProductTensp.setText(tensanpham);
-            edtUpdateProductGiasp.setText(String.valueOf(giasanpham));
-            edtUpdateProductHinhanhsp.setText(hinhanhsanpham);
-            edtUpdateProductMotasp.setText(motasanpham);
+        btnUpdateProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateProductVolley();
+            }
+        });
 
-            btnUpdateProduct.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    UpdateProductVolley();
-                }
-            });
-        }
     }
 
     private void Anhxa() {
@@ -86,7 +79,8 @@ public class UpdateProductActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        CheckConnect.ShowToast_Short(getApplicationContext(), response.toString());
+                        CheckConnect.ShowToast_Short(getApplicationContext(), "Update thành công");
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -102,7 +96,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                 mydata.put("giasanpham", edtUpdateProductGiasp.getText().toString());
                 mydata.put("hinhanhsanpham", edtUpdateProductHinhanhsp.getText().toString());
                 mydata.put("motasanpham", edtUpdateProductMotasp.getText().toString());
-                mydata.put("idsanpham", String.valueOf(idsanpham));
+                mydata.put("idsanpham", String.valueOf(idsp));
                 return mydata;
             }
         };

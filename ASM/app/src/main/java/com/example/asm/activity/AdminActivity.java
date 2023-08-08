@@ -47,14 +47,14 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         anhXa();
-        if (CheckConnect.haveNetworkConnection(getApplicationContext())){
-            // co ket noi internet
-            CheckConnect.ShowToast_Short(getApplicationContext(), "Co mang");
-            getDuLieuSP();
-        }else {
-            CheckConnect.ShowToast_Short(getApplicationContext(), "Khong co ket noi internet !");
-            finish();
-        }
+//        if (CheckConnect.haveNetworkConnection(getApplicationContext())){
+//            // co ket noi internet
+//            CheckConnect.ShowToast_Short(getApplicationContext(), "Loading...");
+//            getDuLieuSP();
+//        }else {
+//            CheckConnect.ShowToast_Short(getApplicationContext(), "Không có kết nối internet !");
+//            finish();
+//        }
         // chuyen sang man hinh them sp
         imgGoAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray products = response.getJSONArray("Sanpham");
-
+                    mangSanpham.clear();
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject product = products.getJSONObject(i);
                         id = product.getInt("id");
@@ -97,7 +97,7 @@ public class AdminActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                CheckConnect.ShowToast_Short(getApplicationContext(), "loi ne");
+                CheckConnect.ShowToast_Short(getApplicationContext(), "lỗi: "+error.getMessage());
             }
         });
         //b5. truyen tham so (neu co)
@@ -119,4 +119,15 @@ public class AdminActivity extends AppCompatActivity {
         imgGoAddProduct = findViewById(R.id.img_go_add_product);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (CheckConnect.haveNetworkConnection(getApplicationContext())) {
+            CheckConnect.ShowToast_Short(getApplicationContext(), "Loading...");
+            getDuLieuSP();
+        } else {
+            CheckConnect.ShowToast_Short(getApplicationContext(), "Không có kết nối internet !");
+            finish();
+        }
+    }
 }

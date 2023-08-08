@@ -2,6 +2,7 @@ package com.example.asm.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.asm.R;
+import com.example.asm.activity.DetailActivity;
 import com.example.asm.model.Sanpham;
 import com.example.asm.myInterface.IClickItemHomeProduct;
 import com.squareup.picasso.Picasso;
@@ -22,14 +24,14 @@ import java.util.ArrayList;
 
 public class HomeSanphamAdapter extends RecyclerView.Adapter<HomeSanphamAdapter.ItemHolder> {
 
-    ArrayList<Sanpham> sanphamArrayList;
-    Context context;
-    private IClickItemHomeProduct iClickItemHomeProduct;
+    private ArrayList<Sanpham> sanphamArrayList;
+    private Context context;
+//    private IClickItemHomeProduct iClickItemHomeProduct;
 
-    public HomeSanphamAdapter(ArrayList<Sanpham> sanphamArrayList, Context context, IClickItemHomeProduct iClickHomeProduct) {
+    public HomeSanphamAdapter(ArrayList<Sanpham> sanphamArrayList, Context context) {
         this.sanphamArrayList = sanphamArrayList;
         this.context = context;
-        this.iClickItemHomeProduct = iClickHomeProduct;
+        //this.iClickItemHomeProduct = iClickHomeProduct;
     }
 
     @NonNull
@@ -54,7 +56,15 @@ public class HomeSanphamAdapter extends RecyclerView.Adapter<HomeSanphamAdapter.
             @Override
             public void onClick(View v) {
                // chhuyen man hinh detail
-                iClickItemHomeProduct.onClickItemHomeProduct(sanpham);
+                //iClickItemHomeProduct.onClickItemHomeProduct(sanpham);
+
+                Intent intent = new Intent(context.getApplicationContext(), DetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("tensanpham", sanpham.getTenSP());
+                intent.putExtra("giasanpham", decimalFormat.format(sanpham.getGiaSP()) + "Đ");
+                intent.putExtra("hinhanhsanpham", sanpham.getHinhAnhSP());
+                intent.putExtra("motasanpham", sanpham.getMoTaSP());
+                context.getApplicationContext().startActivity(intent);
             }
         });
     }
