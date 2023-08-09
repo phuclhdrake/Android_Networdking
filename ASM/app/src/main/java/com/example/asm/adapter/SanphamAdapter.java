@@ -75,8 +75,6 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
                 deleteProductVolley(productId);
 //                showDialogConfirmation();
             }
-
-
         });
 
         holder.btnImgEditProduct.setOnClickListener(new View.OnClickListener() {

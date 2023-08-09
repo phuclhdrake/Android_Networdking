@@ -63,7 +63,7 @@ public class Demo8MainActivity extends AppCompatActivity {
     public void insertFirebase() {
         tvKQ.setText("");
         toDo = new ToDo(txt1.getText().toString(), txt2.getText().toString(), txt3.getText().toString(), txt4.getText().toString());
-        database.collection("TODO")
+        database.collection("PRODUCTS")
                 .document(toDo.getPid())//dat ten cho document
                 .set(toDo.convertHashMap())//insert
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -85,7 +85,7 @@ public class Demo8MainActivity extends AppCompatActivity {
     public void updateFirebase() {
         tvKQ.setText("");
         toDo = new ToDo(txt1.getText().toString(), txt2.getText().toString(), txt3.getText().toString(), txt4.getText().toString());
-        database.collection("TODO")//ten bang du lieu
+        database.collection("PRODUCTS")//ten bang du lieu
                 .document(toDo.getPid())//lay dong du lieu can update
                 .update(toDo.convertHashMap())//update
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -109,7 +109,7 @@ public class Demo8MainActivity extends AppCompatActivity {
     public void deleteFirebase() {
         tvKQ.setText("");
         String id = txt1.getText().toString();
-        database.collection("TODO")
+        database.collection("PRODUCTS")
                 .document(id)
                 .delete()//thuc hien xoa
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -133,7 +133,7 @@ public class Demo8MainActivity extends AppCompatActivity {
     public ArrayList<ToDo> SelectDataFromFirebase() {
         tvKQ.setText("");
         ArrayList<ToDo> list = new ArrayList<>();
-        database.collection("TODO")
+        database.collection("PRODUCTS")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -144,7 +144,7 @@ public class Demo8MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 ToDo toDo1 = document.toObject(ToDo.class);
                                 list.add(toDo1);
-                                strKQ += "pid: " + toDo1.getPid() + "\n";
+                                strKQ += "id: " + toDo1.getPid() + "\n";
                                 strKQ += "name: " + toDo1.getName() + "\n";
                                 strKQ += "price: " + toDo1.getPrice() + "\n";
                                 strKQ += "description: " + toDo1.getDes() + "\n";
